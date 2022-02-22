@@ -1,9 +1,11 @@
 package com.example.example;
 
 import com.example.util.Alerts;
+import com.example.util.Constraints;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -12,9 +14,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class ViewController {
+public class ViewController implements Initializable {
 
     @FXML
     private TextField txtFirstNumber;
@@ -39,5 +43,13 @@ public class ViewController {
         } catch (NumberFormatException e) {
             Alerts.showAlerts("Error", "Parse Error", e.getMessage(), Alert.AlertType.ERROR);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        Constraints.setTextFieldDouble(txtFirstNumber);
+        Constraints.setTextFieldDouble(txtSecondNumber);
+        Constraints.setTextFieldMaxLength(txtFirstNumber,12);
+        Constraints.setTextFieldMaxLength(txtSecondNumber, 12);
     }
 }
